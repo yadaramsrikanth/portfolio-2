@@ -1,0 +1,108 @@
+.skills-section {
+  padding: 80px 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+}
+
+.skills-container {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.skills-container h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 50px;
+  color: #222;
+  position: relative;
+}
+
+/* Underline animation */
+.skills-container h2::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background: #0077ff;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  transition: width 0.5s ease;
+}
+
+.skills-container h2:hover::after {
+  width: 60px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+  gap: 30px;
+}
+
+.skill-card {
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  flex: 0 1 30%;
+  min-width: 200px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Hover: background + border + icon & text color white */
+.skill-card:hover {
+    background-color: #333333; /* instead of blue */
+  border-color: #555555;      /* slightly lighter border */
+  color: #fff;
+  transform: translateY(-5px) scale(1.05);
+}
+
+.skill-card:hover .skill-icon {
+  color: #fff; /* Icon becomes white on hover */
+}
+
+.skill-card h3 {
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+/* Skill icon size */
+.skill-icon {
+  font-size: 3rem;
+}
+
+/* Fade-in animation */
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .skill-card {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .skill-card {
+    flex: 1 1 100%;
+  }
+
+  .skills-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .skill-card h3 {
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,122 @@
+.about-section {
+  padding: 80px 20px;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  opacity: 0;          /* Start invisible for animation */
+  transform: translateY(50px); /* Slide-up effect */
+  transition: all 1s ease;
+}
+
+.about-section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-container {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h2 {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  color: #222;
+  position: relative;
+}
+
+/* Underline animation */
+.about-text h2::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background: #0077ff;
+  left: 0;
+  bottom: -5px;
+  transition: width 0.5s ease;
+}
+
+.about-text h2:hover::after {
+  width: 50px;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #444;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: textFade 0.8s forwards;
+  animation-delay: 0.5s;
+}
+
+.highlight {
+  color: #0077ff;
+  font-weight: bold;
+}
+
+/* Resume Button Animation */
+.resume-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 28px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.resume-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Text fade-in animation */
+@keyframes textFade {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 60px 15px;
+  }
+
+  .about-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-text h2 {
+    font-size: 1.6rem;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+  }
+
+  .resume-button {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+}
