@@ -50,10 +50,10 @@ const Contact=()=>{
             <p><FaEnvelope /> your.email@example.com</p>
             <p><FaPhone /> +91 12345 67890</p>
             <div className="social-icons">
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noreferrer">
+              <a href="https://linkedin.com/in/srikanthyadaram" target="_blank" rel="noreferrer">
                 <FaLinkedin />
               </a>
-              <a href="https://github.com/yourprofile" target="_blank" rel="noreferrer">
+              <a href="https://github.com/yadaramsrikanth" target="_blank" rel="noreferrer">
                 <FaGithub />
                 
               </a>
