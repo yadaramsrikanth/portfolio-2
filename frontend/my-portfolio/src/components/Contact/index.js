@@ -47,8 +47,8 @@ const Contact=()=>{
 
           {/* Contact Info */}
           <div className="contact-info">
-            <p><FaEnvelope /> your.email@example.com</p>
-            <p><FaPhone /> +91 12345 67890</p>
+            <p><FaEnvelope /> yadaramsrikanth2000@gmail.com</p>
+            <p><FaPhone /> +91 7893120993</p>
             <div className="social-icons">
               <a href="https://linkedin.com/in/srikanthyadaram" target="_blank" rel="noreferrer">
                 <FaLinkedin />
