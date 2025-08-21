@@ -1,9 +1,13 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 import { FaEnvelope, FaPhone, FaLinkedin, FaGithub } from "react-icons/fa";
 import "./index.css"
 
 const Contact=()=>{
+const initialState={name:"",email:"",message:""}
+const [responseMsg,setResponseMsg]=useState("")
+const [isError,setIsError]=useState(false)
+const [clientcontactDetails,setclientContactDetails]=useState(initialState)
   const contactRef = useRef(null);
 
   useEffect(() => {
@@ -31,6 +35,51 @@ const Contact=()=>{
     };
   }, []);
 
+
+const submitContactDetails=async(event)=>{
+  event.preventDefault()
+  try{
+  const url="http://localhost:3500/contactdetails"
+  const options={method:"POST",
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(clientcontactDetails)
+  }
+  const data=await fetch(url,options)
+  const response= await data.json()
+  if(data.ok){
+     setIsError(false)
+     setResponseMsg(response.message)
+  }else{
+    setIsError(true)
+    setResponseMsg(response.message)
+  }
+
+  setclientContactDetails(initialState)
+ 
+  setTimeout(()=>{
+    setResponseMsg("")
+  },4000)
+ 
+}catch(e){
+  setIsError(true)
+  setResponseMsg("Error Sending Mesaage")
+  
+  console.log(e)
+  setTimeout(()=>{
+    setResponseMsg("")
+  },3000)
+} 
+}
+
+
+
+
+const onChangeDetails=(e)=>{
+  setclientContactDetails({...clientcontactDetails,[e.target.name]:e.target.value})
+}
+
+
+
   return (
     <section id="contact" className="contact-section" ref={contactRef}>
       <div className="contact-container">
@@ -38,13 +87,14 @@ const Contact=()=>{
         <p>Feel free to reach out for projects or collaborations!</p>
         <div className="contact-content">
           {/* Contact Form */}
-          <form className="contact-form">
-            <input type="text" placeholder="Your Name" required />
-            <input type="email" placeholder="Your Email" required />
-            <textarea placeholder="Your Message" rows="5" required></textarea>
+          <form className="contact-form" onSubmit={submitContactDetails}>
+            <input value={clientcontactDetails.name} name="name" type="text" placeholder="Your Name" required  onChange={onChangeDetails}/>
+            <input value={clientcontactDetails.email} name="email" type="email" placeholder="Your Email" required  onChange={onChangeDetails} />
+            <textarea value={clientcontactDetails.message} name="message" placeholder="Your Message" rows="5" required onChange={onChangeDetails}></textarea>
             <button type="submit">Send Message</button>
+          {responseMsg&&<p style={{color:isError?"red":"green",fontSize:"24px"}}>{responseMsg}</p>}
           </form>
-
+       
           {/* Contact Info */}
           <div className="contact-info">
             <p><FaEnvelope /> yadaramsrikanth2000@gmail.com</p>
