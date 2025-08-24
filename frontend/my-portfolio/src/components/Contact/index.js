@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 
 import { FaEnvelope, FaPhone, FaLinkedin, FaGithub } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 import "./index.css"
 
 const Contact=()=>{
@@ -39,23 +40,19 @@ const [clientcontactDetails,setclientContactDetails]=useState(initialState)
 const submitContactDetails=async(event)=>{
   event.preventDefault()
   try{
-  const url="http://localhost:3500/contactdetails"
-  const options={method:"POST",
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(clientcontactDetails)
-  }
-  const data=await fetch(url,options)
-  const response= await data.json()
-  if(data.ok){
-     setIsError(false)
-     setResponseMsg(response.message)
-  }else{
-    setIsError(true)
-    setResponseMsg(response.message)
-  }
+  
+  console.log(clientcontactDetails)
 
+  const emailjsResult= await emailjs.send(
+    process.env.REACT_APP_EMAILJS_SERVICE_ID,
+   process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+   clientcontactDetails,
+   process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+)
+  console.log(emailjsResult)
+  setIsError(false)
+  setResponseMsg("Message Sent SuccessFully")
   setclientContactDetails(initialState)
- 
   setTimeout(()=>{
     setResponseMsg("")
   },4000)

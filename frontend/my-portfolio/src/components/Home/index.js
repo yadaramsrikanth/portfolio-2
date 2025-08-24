@@ -38,6 +38,8 @@ const Home = () => {
             <a href="#contact" className="btn secondary-btn">
               Contact Me
             </a>
+
+
           </div>
         </div>
       </div>
