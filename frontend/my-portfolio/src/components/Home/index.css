@@ -3,6 +3,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
+    pointer-events: none; /* allow clicks to pass through */
+  
 }
 .home-section {
   height: 100vh;
